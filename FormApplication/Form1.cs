@@ -65,6 +65,15 @@ namespace FormApp
                 textBox1.Clear();
             }
         }
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                button1.PerformClick();
+                textBox1.Clear();
+            }
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if(checkBox1.Checked)
@@ -77,7 +86,8 @@ namespace FormApp
                 textBox2.PasswordChar = '*';
             }
         }
-      
+
+        
     }
 }
 
