@@ -30,16 +30,14 @@ namespace FormApp
             }
             timer1.Start();
 
-            tablo.Columns.Add("ID", typeof(int));
-            tablo.Columns.Add("USERNAME", typeof(object));
-            tablo.Columns.Add("PASSWORD", typeof(object));
-            tablo.Columns.Add("GENDER", typeof(string));
-            tablo.Columns.Add("AGE", typeof(int));
-            
-
+            tablo.Columns.Add("Username", typeof(object));
+            tablo.Columns.Add("Password", typeof(object));
+            tablo.Columns.Add("Gender", typeof(string));
+            tablo.Columns.Add("Age", typeof(int));
+            tablo.Columns.Add("Work Status", typeof(String));
+           
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = tablo;
-
 
             MessageBox.Show("Login Successful!\n\nWelcome");
 
@@ -83,10 +81,10 @@ namespace FormApp
             }
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {           //Harf dışında herhangi bir sayı veya özel karakter girilememesi için
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Char.IsSeparator(e.KeyChar);
-            
+
             //IsLetter--> Belirtilen unicode karakterinin unicode harfi olarak kategorilere ayrılmadığını gösterir
             //IsControl--> Belirtilen unicode karakterinin bir denetim karakteri olarak kategorilere ayrılmadığını gösterir
             //IsSeparator--> Belirtilen dizedeki karakterinin ayırıcı karakter olarak kategorilere ayrılmadığını gösterir
