@@ -21,7 +21,6 @@ namespace FormApp
         {
             InitializeComponent();
         }
-
         public void Form2_Load(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count <= 0)
@@ -30,6 +29,7 @@ namespace FormApp
             }
             timer1.Start();
 
+            tablo.Columns.Add("ID");
             tablo.Columns.Add("Username", typeof(object));
             tablo.Columns.Add("Password", typeof(object));
             tablo.Columns.Add("Gender", typeof(string));
@@ -41,14 +41,19 @@ namespace FormApp
 
             MessageBox.Show("Login Successful!\n\nWelcome");
 
+            textBox1.ReadOnly = true;
         }
-
         public void button1_Click(object sender, EventArgs e)
         {
-            tablo.Rows.Add(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text);
+            tablo.Rows.Add(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
             dataGridView1.DataSource = tablo;
+            
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = (i + 1).ToString();
+            }
 
-            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
+            if (textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "")
             {
                 MessageBox.Show("Please fill in all blank fields!");
             }
@@ -56,19 +61,14 @@ namespace FormApp
             else
             {
                 MessageBox.Show("Adding Successful!");
-                textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
                 textBox4.Clear();
                 textBox5.Clear();
+                textBox6.Clear();
             }
     }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Text = DateTime.Now.ToLongTimeString();
-        }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow.Cells[0].Value != null)
@@ -80,8 +80,11 @@ namespace FormApp
                 MessageBox.Show("Please select registration");
             }
         }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {           //Harf dışında herhangi bir sayı veya özel karakter girilememesi için
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Char.IsSeparator(e.KeyChar);
 
@@ -89,5 +92,20 @@ namespace FormApp
             //IsControl--> Belirtilen unicode karakterinin bir denetim karakteri olarak kategorilere ayrılmadığını gösterir
             //IsSeparator--> Belirtilen dizedeki karakterinin ayırıcı karakter olarak kategorilere ayrılmadığını gösterir
         }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Char.IsSeparator(e.KeyChar);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Text = DateTime.Now.ToLongTimeString();
+        }
+
     }
 }

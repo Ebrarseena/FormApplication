@@ -63,6 +63,7 @@ namespace FormApp
                 e.Handled = true;
                 button1.PerformClick();
                 textBox1.Clear();
+                textBox2.Clear();
             }
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -72,6 +73,7 @@ namespace FormApp
                 e.Handled = true;
                 button1.PerformClick();
                 textBox1.Clear();
+                textBox2.Clear();
             }
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
