@@ -19,11 +19,6 @@ namespace FormApp
             Date.Text = DateTime.Now.ToLongDateString();
             textBox2.PasswordChar = '*';
         }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            Form2 form = new Form2();
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "ebrar" && textBox2.Text == "1234")
@@ -56,7 +51,6 @@ namespace FormApp
                 textBox2.Clear();
             }
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -91,7 +85,6 @@ namespace FormApp
             }
         }
 
-        
     }
 }
 

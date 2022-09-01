@@ -16,7 +16,8 @@ namespace FormApp
 {
     public partial class Form2 : Form
     {
-        DataTable tablo = new DataTable();
+        DataTable table = new DataTable();
+        int indexRow;
         public Form2()
         {
             InitializeComponent();
@@ -29,24 +30,25 @@ namespace FormApp
             }
             timer1.Start();
 
-            tablo.Columns.Add("ID");
-            tablo.Columns.Add("Username", typeof(object));
-            tablo.Columns.Add("Password", typeof(object));
-            tablo.Columns.Add("Gender", typeof(string));
-            tablo.Columns.Add("Age", typeof(int));
-            tablo.Columns.Add("Work Status", typeof(String));
+            table.Columns.Add("ID");
+            table.Columns.Add("Username", typeof(object));
+            table.Columns.Add("Password", typeof(object));
+            table.Columns.Add("Gender", typeof(string));
+            table.Columns.Add("Age", typeof(int));
+            table.Columns.Add("Work Status", typeof(string));
            
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = tablo;
+            dataGridView1.DataSource = table;
 
             MessageBox.Show("Login Successful!\n\nWelcome");
 
             textBox1.ReadOnly = true;
+            
         }
         public void button1_Click(object sender, EventArgs e)
         {
-            tablo.Rows.Add(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
-            dataGridView1.DataSource = tablo;
+            table.Rows.Add(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, textBox6.Text);
+            dataGridView1.DataSource = table;
             
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
@@ -80,10 +82,7 @@ namespace FormApp
                 MessageBox.Show("Please select registration");
             }
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            
-        }
+
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {           //Harf dışında herhangi bir sayı veya özel karakter girilememesi için
             e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !Char.IsSeparator(e.KeyChar);
@@ -92,7 +91,6 @@ namespace FormApp
             //IsControl--> Belirtilen unicode karakterinin bir denetim karakteri olarak kategorilere ayrılmadığını gösterir
             //IsSeparator--> Belirtilen dizedeki karakterinin ayırıcı karakter olarak kategorilere ayrılmadığını gösterir
         }
-
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -107,5 +105,34 @@ namespace FormApp
             Text = DateTime.Now.ToLongTimeString();
         }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            indexRow = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows[indexRow];
+
+            textBox2.Text = row.Cells[1].Value.ToString();
+            textBox3.Text = row.Cells[2].Value.ToString();
+            textBox4.Text = row.Cells[3].Value.ToString();
+            textBox5.Text = row.Cells[4].Value.ToString();
+            textBox6.Text = row.Cells[5].Value.ToString();
+        }
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
+
+            newDataRow.Cells[1].Value = textBox2.Text;
+            newDataRow.Cells[2].Value = textBox3.Text;
+            newDataRow.Cells[3].Value = textBox4.Text;
+            newDataRow.Cells[4].Value = textBox5.Text;
+            newDataRow.Cells[5].Value = textBox6.Text;
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+
+        }
+
+      
     }
 }
