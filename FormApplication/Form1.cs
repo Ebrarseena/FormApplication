@@ -23,8 +23,10 @@ namespace FormApp
         {
             if (textBox1.Text == "ebrar" && textBox2.Text == "1234")
             {
+                this.Hide();
                 Form2 form = new Form2();
                 form.ShowDialog();
+                
             }
                        
             else if (textBox1.Text == "" || textBox2.Text == "")
