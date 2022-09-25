@@ -43,7 +43,6 @@ namespace FormApp
             MessageBox.Show("Login Successful!\n\nWelcome");
 
             textBox1.ReadOnly = true;
-            
         }
         public void button1_Click(object sender, EventArgs e)
         {
@@ -132,7 +131,6 @@ namespace FormApp
             textBox6.Clear();
 
         }
-
-      
+              
     }
 }

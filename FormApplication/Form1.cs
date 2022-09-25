@@ -26,19 +26,7 @@ namespace FormApp
                 Form2 form = new Form2();
                 form.ShowDialog();
             }
-
-            else if (textBox1.Text == "muhammet" && textBox2.Text == "1357")
-            {
-                Form2 form = new Form2();
-                form.ShowDialog();
-            }
-                                              
-            else if (textBox1.Text == "güven" && textBox2.Text == "0987")
-            {
-                Form2 form = new Form2();
-                form.ShowDialog();
-            }
-
+                       
             else if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("Please fill in all blank fields!");
@@ -76,12 +64,13 @@ namespace FormApp
         {
             if(checkBox1.Checked)
             {
-                textBox2.PasswordChar = '\0';  
+                
+                textBox2.PasswordChar = '*';
             }
 
             else
             {
-                textBox2.PasswordChar = '*';
+                textBox2.PasswordChar = '\0';  
             }
         }
 
